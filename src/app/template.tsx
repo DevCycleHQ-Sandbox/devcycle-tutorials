@@ -2,7 +2,7 @@
 
 import React, { ReactNode, useEffect } from 'react';
 
-import { FiHome, FiMenu, FiChevronDown } from 'react-icons/fi';
+import { FiHome, FiMenu, FiChevronDown, FiSliders } from 'react-icons/fi';
 import { IconType } from 'react-icons';
 import { BeatLoader } from 'react-spinners';
 
@@ -77,10 +77,12 @@ const Footer = () => {
 interface LinkItemProps {
   name: string;
   icon: IconType;
+  auth: boolean;
   url: string;
 }
 const LinkItems: Array<LinkItemProps> = [
-  { name: 'Home', icon: FiHome, url: '/' }
+  { name: 'Home', icon: FiHome, url: '/', auth: false },
+  { name: 'User OptIn', icon: FiSliders, url: '/2-user-optin', auth: true }
 ];
 
 const Sidebar = ({ children }: { children: ReactNode }) => {
@@ -118,6 +120,8 @@ interface SidebarProps extends BoxProps {
 }
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
+  const { user } = useUser();
+
   return (
     <Box
       transition="3s ease"
@@ -137,11 +141,14 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         />
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
-      {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon} url={link.url}>
-          {link.name}
-        </NavItem>
-      ))}
+      {LinkItems.map(
+        (link) =>
+          (!link.auth || (user && link.auth)) && (
+            <NavItem key={link.name} icon={link.icon} url={link.url}>
+              {link.name}
+            </NavItem>
+          )
+      )}
     </Box>
   );
 };
