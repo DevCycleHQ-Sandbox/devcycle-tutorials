@@ -194,7 +194,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
   const { user, error, isLoading } = useUser();
   const toast = useToast();
 
-  const showProfilePage = useVariableValue('profile-page', false);
+  const showProfilePage = useVariableValue('myname-profile-page', false);
 
   const bgColorModeValue = useColorModeValue('white', 'gray.900');
   const borderColorModeValue = useColorModeValue('gray.200', 'gray.700');
