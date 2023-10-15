@@ -1,8 +1,19 @@
 'use client';
 
-import { Container, Heading, Stack, Box, Text } from '@chakra-ui/react';
+import {
+  FormControl,
+  FormLabel,
+  Container,
+  SimpleGrid,
+  Switch,
+  Heading,
+  Stack,
+  Box
+} from '@chakra-ui/react';
 
 export default function Page() {
+  const featureToggle = false;
+
   return (
     <Container maxW={'3xl'}>
       <Stack
@@ -13,12 +24,15 @@ export default function Page() {
       >
         <Heading
           fontWeight={600}
-          fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
+          fontSize={{ base: 'xl', sm: '2xl', md: '4xl' }}
           lineHeight={'110%'}
         >
-          Page
+          DevCycle NextJS Getting Started
         </Heading>
-        <Text color={'gray.500'}>This is a page</Text>
+        <FormControl as={SimpleGrid} columns={{ base: 2, lg: 4 }}>
+          <FormLabel htmlFor="feature-toggle">feature-toggle:</FormLabel>
+          <Switch id="feature-toggle" isChecked={featureToggle} />
+        </FormControl>
       </Stack>
     </Container>
   );
