@@ -1,5 +1,10 @@
-import Head from 'next/head';
+import { Metadata } from 'next';
+
 import { Providers } from './providers';
+
+export const metadata: Metadata = {
+  title: 'DevCycle NextJS Getting Started'
+};
 
 export default function RootLayout({
   children
@@ -8,12 +13,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Head>
-        <title>App</title>
-        <meta name="description" content="app" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <body>
         <Providers>{children}</Providers>
       </body>
