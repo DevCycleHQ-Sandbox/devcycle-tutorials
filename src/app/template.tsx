@@ -1,12 +1,13 @@
 'use client';
 
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 
 import { FiHome, FiMenu, FiChevronDown } from 'react-icons/fi';
 import { IconType } from 'react-icons';
 import { BeatLoader } from 'react-spinners';
 
 import {
+  useToast,
   Avatar,
   Button,
   Container,
@@ -191,11 +192,24 @@ interface MobileProps extends FlexProps {
 }
 const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
   const { user, error, isLoading } = useUser();
+  const toast = useToast();
 
   const showProfilePage = useVariableValue('profile-page', false);
 
   const bgColorModeValue = useColorModeValue('white', 'gray.900');
   const borderColorModeValue = useColorModeValue('gray.200', 'gray.700');
+
+  useEffect(() => {
+    if (error) {
+      toast({
+        title: error.name,
+        description: error.message,
+        status: 'error',
+        duration: 9000,
+        isClosable: true
+      });
+    }
+  }, [toast, error]);
 
   return (
     <Flex
