@@ -9,7 +9,6 @@
     "lint": "next lint",
     "prettier": "prettier . --check",
     "prettier:fix": "prettier . --write",
-    "prepare": "husky install",
     "test": "echo no tests"
   },
   "dependencies": {
